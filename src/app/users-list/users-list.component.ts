@@ -4,6 +4,8 @@ import { User } from '../user';
 
 @Component({
   selector: 'app-users-list',
+  standalone: true,
+  imports: [],
   templateUrl: './users-list.component.html'
 })
 export class UsersListComponent implements OnInit {
