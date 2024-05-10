@@ -5,8 +5,6 @@ import { User } from '../user';
 
 @Component({
   selector: 'app-user-form',
-  standalone: true,
-  imports: [],
   templateUrl: './user-form.component.html'
 })
 export class UserFormComponent implements OnInit {
@@ -19,19 +17,17 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.params['id'];
     if (id) {
-      this.userService.getUser(+id).subscribe(data => {
-        this.user = data;
-      });
+      this.userService.getUser(id).subscribe(user => this.user = user);
     }
   }
 
   onSubmit() {
     if (this.user.id) {
-      this.userService.updateUser(this.user.id, this.user).subscribe(result => this.gotoUserList());
+      this.userService.updateUser(this.user.id, this.user).subscribe(() => this.gotoUserList());
     } else {
-      this.userService.createUser(this.user).subscribe(result => this.gotoUserList());
+      this.userService.createUser(this.user).subscribe(() => this.gotoUserList());
     }
   }
 
