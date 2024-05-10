@@ -1,1 +1,23 @@
-<p>users-list works!</p>
+<h2>Lista de Usuários</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Foto</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.cpf }}</td>
+      <td><img [src]="user.photo" alt="Foto do usuário" style="width: 50px;"></td>
+      <td>
+        <button (click)="editUser(user.id)">Editar</button>
+        <button (click)="deleteUser(user.id)">Deletar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="addUser()">Adicionar Usuário</button>
