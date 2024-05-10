@@ -1,1 +1,6 @@
-<p>user-details works!</p>
+<h2>Detalhes do Usuário</h2>
+<div *ngIf="user">
+  <p>Nome: {{ user.name }}</p>
+  <p>CPF: {{ user.cpf }}</p>
+  <img [src]="user.photo" alt="Foto do usuário">
+</div>

@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-details',
-  standalone: true,
-  imports: [],
-  templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.scss'
+  templateUrl: './user-details.component.html'
 })
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit {
+  user!: User;
 
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    const id = this.route.snapshot.params['id'];
+    this.userService.getUser(id).subscribe(user => this.user = user);
+  }
 }
